@@ -8,15 +8,15 @@ int main(int argc, char **argv)
     {
         for (int i = 1; i < argc; i++)
         {
-            std::string str = argv[i];
+            std::string str(argv[i]);
             for (std::string::size_type j = 0; j < str.length(); j++)
             {
                 if (std::isalpha(str[j]))
                 {
                     if (std::islower(str[j]))
-                        std::cout << (char)std::toupper(str[j]);
+                        std::cout << static_cast<char>(std::toupper(str[j]));
                     else
-                        std::cout << (char)std::tolower(str[j]);
+                        std::cout << str[j];
                 }
                 else
                     std::cout << str[j];

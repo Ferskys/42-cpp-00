@@ -45,7 +45,7 @@ void PhoneBook::searchContact(void)
         std::cout << "PhoneBook is empty. Please, add a contact to search." << std::endl;
         return ;
     }
-    std::cout << "     index|first name| last name| nick name" << std::endl;
+    std::cout << "     index|first name| last name| nickname" << std::endl;
     i = 0;
     while (i < this->_contactsCount)
     {

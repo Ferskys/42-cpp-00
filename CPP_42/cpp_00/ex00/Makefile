@@ -1,4 +1,4 @@
-NAME	= mega_phone
+NAME	= megaphone
 	
 CC		= c++
 FLAGS	= -Wall -Wextra -Werror -std=c++98
@@ -16,7 +16,7 @@ all: $(NAME)
 
 $(NAME): 
 	@printf "$(CURSIVE)$(GRAY) 	- Compiling $(NAME)... $(RESET)\n"
-	@ $(CC) $(FLAGS) mega_phone.cpp -o $(NAME)
+	@ $(CC) $(FLAGS) megaphone.cpp -o $(NAME)
 	@printf "$(GREEN)    - Executable ready.\n$(RESET)"
 
 clean:
