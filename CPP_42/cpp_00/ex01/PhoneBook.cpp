@@ -62,6 +62,6 @@ void PhoneBook::searchContact(void)
         std::cout << "Invalid index. Please, try again." << std::endl;
         return ;
     }
-    this->_contacts[index].printContact();
+    this->_contacts[index].printFullContact();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }

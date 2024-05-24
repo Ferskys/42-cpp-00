@@ -24,9 +24,12 @@ class Contact
         std::string _nickname;
         std::string _phoneNumber;
         std::string _darkestSecret;
+        void _get_input(std::string &input);
+        int _isContactEmpty(std::string first_name, std::string last_name, std::string nickname, std::string phone_number, std::string darkest_secret);
     public:
         Contact(void);
         ~Contact(void);
         void setContact(void);
         void printContact(void);
+        void printFullContact(void);
 };
