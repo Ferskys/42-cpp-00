@@ -32,5 +32,5 @@ int main() {
 
     delete wrongMeta;
     delete wrongCat;
-    return 0;
+    return (0);
 }

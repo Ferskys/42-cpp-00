@@ -1,28 +1,35 @@
-NAME    = ex00
+NAME        = ex00
 
-CC      = c++
-FLAGS   = -Wall -Wextra -Werror -std=c++98
-RM      = rm -rf
+CC          = c++
+FLAGS       = -Wall -Wextra -Werror -std=c++98
+RM          = rm -rf
 
-# Colors:
+OBDIR       = .oFiles
+
+FILES       = main Animal Dog Cat WrongAnimal WrongCat
+
+SRC         = $(FILES:=.cpp)
+OBJ         = $(addprefix $(OBDIR)/, $(FILES:=.o))
+
 GREEN       = \033[92;5;118m
 YELLOW      = \033[93;5;226m
 GRAY        = \033[33;2;37m
 RESET       = \033[0m
 CURSIVE     = \033[3m
 
-SRC     = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
-OBJ     = $(SRC:.cpp=.o)
-
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@printf "$(CURSIVE)$(GRAY)   - Compiling $(NAME)... $(RESET)\n"
-	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
-	@printf "$(GREEN)    - Executable ready.$(RESET)\n"
+	@printf "$(CURSIVE)$(GRAY)    - Compiling $(NAME)... $(RESET)\n"
+	@$(CC) $(OBJ) -o $(NAME)
+	@printf "$(GREEN)- Executable ready.\n$(RESET)"
+
+$(OBDIR)/%.o: %.cpp
+	@mkdir -p $(OBDIR)
+	@$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	@$(RM) $(OBJ)
+	@$(RM) -rf $(OBDIR)
 	@printf "$(YELLOW)    - Object files removed.$(RESET)\n"
 
 fclean: clean
@@ -31,4 +38,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean re fclean
+.PHONY: all clean fclean re
