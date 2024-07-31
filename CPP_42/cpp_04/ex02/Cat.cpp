@@ -1,37 +1,42 @@
 #include "Cat.hpp"
 
-Cat::Cat() : AAnimal() {
-    brain = new Brain();
-    type = "Cat";
-    std::cout << "Cat constructor called" << std::endl;
+Cat::Cat(void)
+{
+	this->type = "Cat";
+	this->brain = new Brain();
+	std::cout << "Cat default constructor" << std::endl;
+	return;
 }
 
-Cat::Cat(const Cat& other) : AAnimal(other) {
-    brain = new Brain(*other.brain);
-    type = other.type;
-    std::cout << "Cat copy constructor called" << std::endl;
+Cat::~Cat(void)
+{
+	std::cout << "Cat destructor" << std::endl;
+	delete this->brain;
+	return;
 }
 
-Cat::~Cat() {
-    delete brain;
-    std::cout << "Cat destructor called" << std::endl;
+Cat::Cat(const Cat &other)
+{
+	std::cout << "Cat copy constructor" << std::endl;
+	this->brain = new Brain();
+	*this = other;
+	return;
 }
 
-Cat& Cat::operator=(const Cat& other) {
-    if (this != &other) {
-        AAnimal::operator=(other);
-        delete brain;
-        brain = new Brain(*other.brain);
-        type = other.type;
-        std::cout << "Cat assignment operator called" << std::endl;
-    }
-    return *this;
+Cat	&Cat::operator=(const Cat &other)
+{
+	std::cout << "Cat operator=() overload" << std::endl;
+	this->type = other.type;
+	*(this->brain) = *(other.brain);
+	return (*this);
 }
 
-void Cat::makeSound() const {
-    std::cout << "Meow" << std::endl;
+void	Cat::makeSound(void) const
+{
+	std::cout << "Meow" << std::endl;
 }
 
-void Cat::doSomething() const {
-    std::cout << "Cat is doing something" << std::endl;
+Brain	*Cat::get_brain() const
+{
+	return (this->brain);
 }

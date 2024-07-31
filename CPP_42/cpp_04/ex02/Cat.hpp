@@ -10,8 +10,9 @@ private:
 public:
     Cat();
     Cat(const Cat& other);
-    ~Cat();
-    Cat& operator=(const Cat& other);
-    void makeSound() const;
-    void doSomething() const; // Implementação do novo método virtual
+    vitual ~Cat();
+    Cat(const Cat &other);
+	Cat &operator=(const Cat &other);
+	void makeSound() const;
+	Brain *get_brain() const;
 };
