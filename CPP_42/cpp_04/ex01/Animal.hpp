@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "Brain.hpp"
 
 class Animal {
 protected:
@@ -8,7 +9,11 @@ protected:
 
 public:
     Animal();
-    virtual ~Animal();
-    virtual void makeSound() const = 0;
-    std::string getType() const;
+	virtual ~Animal(void);
+	Animal(const Animal &other);
+	Animal &operator=(const Animal &other);
+
+	void makeSound(void) const;
+	virtual Brain *get_brain(void) const;
+	virtual std::string getType(void) const;
 };
