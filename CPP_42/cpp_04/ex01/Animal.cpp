@@ -1,11 +1,13 @@
 #include "Animal.hpp"
 
-Animal::Animal() : type("Animal") {
+Animal::Animal() : type("Animal")
+{
     std::cout << "Animal constructor called" << std::endl;
 	return;
 }
 
-Animal::~Animal(void) {
+Animal::~Animal(void)
+{
     std::cout << "Animal destructor called" << std::endl;
 	return;
 }
