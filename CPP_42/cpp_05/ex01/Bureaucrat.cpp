@@ -1,5 +1,4 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
 
 // Constructors
 Bureaucrat::Bureaucrat() : name("Unnamed"), grade(150) {} // Default constructor
@@ -30,6 +29,15 @@ const std::string& Bureaucrat::getName() const {
 
 int Bureaucrat::getGrade() const {
     return grade;
+}
+
+void Bureaucrat::signForm(Form& form) {
+    try {
+        form.beSigned(*this);  // Assuming Form has a beSigned method
+        std::cout << name << " signed " << form.getName() << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << name << " couldn’t sign " << form.getName() << " because " << e.what() << std::endl;
+    }
 }
 
 // Increment and Decrement
