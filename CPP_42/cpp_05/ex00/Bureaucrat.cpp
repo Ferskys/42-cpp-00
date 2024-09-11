@@ -1,19 +1,15 @@
 #include "Bureaucrat.hpp"
 
-// Constructors
-Bureaucrat::Bureaucrat() : name("Unnamed"), grade(150) {} // Default constructor
+// Default constructor
+Bureaucrat::Bureaucrat() : name("Unnamed"), grade(150) {}
 
-Bureaucrat::Bureaucrat(const std::string& name, int grade) : name(name), grade(grade) {
-    if (grade < 1) throw GradeTooHighException();
-    if (grade > 150) throw GradeTooLowException();
-}
-
-// Copy Constructor
+// Copy constructor
 Bureaucrat::Bureaucrat(const Bureaucrat& other) : name(other.name), grade(other.grade) {}
 
-// Assignment Operator
+// Copy assignment operator
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
     if (this != &other) {
+        // name is const, so it cannot be assigned
         this->grade = other.grade;
     }
     return *this;
@@ -21,6 +17,16 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 
 // Destructor
 Bureaucrat::~Bureaucrat() {}
+
+// Parameterized constructor
+Bureaucrat::Bureaucrat(const std::string& name, int grade) : name(name) {
+    if (grade < 1) {
+        throw GradeTooHighException();
+    } else if (grade > 150) {
+        throw GradeTooLowException();
+    }
+    this->grade = grade;
+}
 
 // Getters
 const std::string& Bureaucrat::getName() const {
@@ -31,18 +37,22 @@ int Bureaucrat::getGrade() const {
     return grade;
 }
 
-// Increment and Decrement
+// Modifiers
 void Bureaucrat::incrementGrade() {
-    if (grade <= 1) throw GradeTooHighException();
+    if (grade <= 1) {
+        throw GradeTooHighException();
+    }
     grade--;
 }
 
 void Bureaucrat::decrementGrade() {
-    if (grade >= 150) throw GradeTooLowException();
+    if (grade >= 150) {
+        throw GradeTooLowException();
+    }
     grade++;
 }
 
-// Exception Classes
+// Exception classes
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
     return "Grade is too high!";
 }
@@ -51,7 +61,7 @@ const char* Bureaucrat::GradeTooLowException::what() const throw() {
     return "Grade is too low!";
 }
 
-// Output operator overload
+// Overloaded output operator
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
     os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
     return os;
