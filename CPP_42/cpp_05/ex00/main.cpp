@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
     if (!(iss >> grade) || grade < 1 || grade > 150) {
         std::cerr << "Error: Invalid grade." << std::endl;
         std::cerr << "The grade must be an integer between 1 (highest) and 150 (lowest)." << std::endl;
-        return 1;  // Código de erro se o grade não for um número válido
+        return 1;  // Código de erro se o grade não for um número válido (fazer uma macro com uma msg de erro ?)
     }
 
     try {
@@ -31,11 +31,11 @@ int main(int argc, char* argv[]) {
 
         // Teste de incremento e decremento da nota
         std::cout << "Incrementing the grade..." << std::endl;
-        bureaucrat.incrementGrade();
+        bureaucrat.decrementGrade();
         std::cout << bureaucrat << std::endl;
 
         std::cout << "Decrementing the grade..." << std::endl;
-        bureaucrat.decrementGrade();
+        bureaucrat.incrementGrade();
         std::cout << bureaucrat << std::endl;
     }
     catch (std::exception &e) {

@@ -4,7 +4,11 @@
 Bureaucrat::Bureaucrat() : name("Unnamed"), grade(150) {}
 
 // Copy constructor
-Bureaucrat::Bureaucrat(const Bureaucrat& other) : name(other.name), grade(other.grade) {}
+Bureaucrat::Bureaucrat(const Bureaucrat& other) : name(other.name), grade(other.grade) {
+    // name is const, so it cannot be assigned
+    // this->name = other.name;
+    // this->grade = other.grade;
+}
 
 // Copy assignment operator
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
@@ -37,7 +41,7 @@ int Bureaucrat::getGrade() const {
     return grade;
 }
 
-// Modifiers
+// Modifiers (increment and decrement grade verify if the increment and decrement are right "?")
 void Bureaucrat::incrementGrade() {
     if (grade <= 1) {
         throw GradeTooHighException();
