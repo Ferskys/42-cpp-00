@@ -1,4 +1,5 @@
 #include "Serializer.hpp"
+#include "Data.hpp"
 
 unsigned long Serializer::serialize(Data* ptr) {
     return reinterpret_cast<unsigned long>(ptr);

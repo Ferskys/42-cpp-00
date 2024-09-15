@@ -1,7 +1,8 @@
 #pragma once
 #include <string> // Include string for std::string
 
-struct Data {
+class Data {
+public:  // Torna os membros públicos, como em uma struct
     int value;
     std::string name;
 };
