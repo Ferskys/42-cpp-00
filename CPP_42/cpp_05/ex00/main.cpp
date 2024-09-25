@@ -18,24 +18,22 @@ int main(int argc, char* argv[]) {
 
     // Converter argv[2] para int usando std::istringstream
     std::istringstream iss(argv[2]);
-    if (!(iss >> grade) || grade < 1 || grade > 150) {
-        std::cerr << "Error: Invalid grade." << std::endl;
-        std::cerr << "The grade must be an integer between 1 (highest) and 150 (lowest)." << std::endl;
-        return 1;  // Código de erro se o grade não for um número válido (fazer uma macro com uma msg de erro ?)
-    }
+    iss >> grade;
 
-    try {
+	try {
         // Criando o objeto Bureaucrat
         Bureaucrat bureaucrat(name, grade);
+		std::cout << bureaucrat.getGrade() << std::endl;
+		std::cout << bureaucrat.getName() << std::endl;
         std::cout << bureaucrat << std::endl;
 
         // Teste de incremento e decremento da nota
         std::cout << "Incrementing the grade..." << std::endl;
-        bureaucrat.decrementGrade();
+        bureaucrat.incrementGrade();
         std::cout << bureaucrat << std::endl;
 
         std::cout << "Decrementing the grade..." << std::endl;
-        bureaucrat.incrementGrade();
+        bureaucrat.decrementGrade();
         std::cout << bureaucrat << std::endl;
     }
     catch (std::exception &e) {

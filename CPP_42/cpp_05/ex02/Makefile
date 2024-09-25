@@ -5,6 +5,7 @@ FLAGS       = -Wall -Wextra -Werror -std=c++98
 RM          = rm -rf
 
 OBDIR       = .oFiles
+SHRUBBERY	= Office_shrubbery
 
 FILES       = main Bureaucrat AForm ShrubberyCreationForm RobotomyRequestForm PresidentialPardonForm 
 
@@ -20,21 +21,21 @@ CURSIVE     = \033[3m
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@printf "$(CURSIVE)$(GRAY)    - Compiling $(NAME)... $(RESET)\n"
+	@echo "$(CURSIVE)$(GRAY)    - Compiling $(NAME)... $(RESET)"
 	@$(CC) $(OBJ) -o $(NAME)
-	@printf "$(GREEN)- Executable ready.\n$(RESET)"
+	@echo "$(GREEN)- Executable ready.$(RESET)"
 
 $(OBDIR)/%.o: %.cpp
 	@mkdir -p $(OBDIR)
 	@$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	@$(RM) -rf $(OBDIR)
-	@printf "$(YELLOW)    - Object files removed.$(RESET)\n"
+	@$(RM) -rf $(OBDIR) $(SHRUBBERY)
+	@echo "$(YELLOW)    - Object files removed.$(RESET)"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@printf "$(YELLOW)    - Executable removed.$(RESET)\n"
+	@echo "$(YELLOW)    - Executable removed.$(RESET)"
 
 re: fclean all
 
