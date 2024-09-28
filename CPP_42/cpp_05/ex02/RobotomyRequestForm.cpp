@@ -3,7 +3,6 @@
 #include <ctime>
 #include <iostream>
 
-RobotomyRequestForm::RobotomyRequestForm(void) : AForm("RobotomyRequestForm", 72, 45), _target("NoTarget") {};
 RobotomyRequestForm::RobotomyRequestForm(std::string const target) : AForm("RobotomyRequestForm", 72, 45), _target(target) {};
 RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const& that) : AForm("RobotomyRequestForm", 72, 45), _target("NoTarget") { *this = that; }
 RobotomyRequestForm::~RobotomyRequestForm(void) {};

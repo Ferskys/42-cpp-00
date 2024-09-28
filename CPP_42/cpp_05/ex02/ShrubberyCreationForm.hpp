@@ -8,7 +8,6 @@ class ShrubberyCreationForm : public AForm
 		const std::string	_target;
 
 	public:
-		ShrubberyCreationForm(void);
 		ShrubberyCreationForm(std::string const target);
 		ShrubberyCreationForm(ShrubberyCreationForm const& that);
 		~ShrubberyCreationForm(void);

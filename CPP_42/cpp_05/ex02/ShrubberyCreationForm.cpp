@@ -15,8 +15,6 @@ _- -   | | _- _   _- -   | | _- _   _- -   | | _- _\n\
 
 void drawTree(std::string const& fileName) throw(std::ios_base::failure);
 
-ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("ShrubberyCreationForm", 145, 137), _target("NoTarget") {};
-
 ShrubberyCreationForm::ShrubberyCreationForm(std::string const target) : AForm("ShrubberyCreationForm", 145, 137), _target(target) {};
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const& that) : AForm("ShrubberyCreationForm", 145, 137), _target("NoTarget") {

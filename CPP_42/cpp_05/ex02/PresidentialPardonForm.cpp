@@ -1,8 +1,6 @@
 #include "PresidentialPardonForm.hpp"
 #include <iostream>
 
-PresidentialPardonForm::PresidentialPardonForm(void) : AForm("PresidentialPardonForm", 25, 5), _target("NoTarget") {};
-
 PresidentialPardonForm::PresidentialPardonForm(std::string const target) : AForm("PresidentialPardonForm", 25, 5), _target(target) {};
 
 PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const& that) : AForm("PresidentialPardonForm", 25, 5), _target("NoTarget") {

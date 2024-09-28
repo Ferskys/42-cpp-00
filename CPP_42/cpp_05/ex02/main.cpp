@@ -18,7 +18,7 @@ namespace tests
 		};
 		ShrubberyCreationForm f1("Office");
 		ShrubberyCreationForm f2(f1);
-		ShrubberyCreationForm f3;
+		ShrubberyCreationForm f3("Home");
 
 		std::cout << f1 << std::endl;
 		std::cout << f2 << std::endl;
@@ -45,7 +45,7 @@ namespace tests
 		};
 		RobotomyRequestForm f1("Dennis DeYoung");
 		RobotomyRequestForm f2(f1);
-		RobotomyRequestForm f3;
+		RobotomyRequestForm f3("Tommy Shaw");
 
 		std::cout << f1 << std::endl;
 		std::cout << f2 << std::endl;
@@ -72,7 +72,7 @@ namespace tests
 		};
 		PresidentialPardonForm f1("Arthur Philip Dent");
 		PresidentialPardonForm f2(f1);
-		PresidentialPardonForm f3;
+		PresidentialPardonForm f3("Ford Prefect");
 
 		std::cout << f1 << std::endl;
 		std::cout << f2 << std::endl;
