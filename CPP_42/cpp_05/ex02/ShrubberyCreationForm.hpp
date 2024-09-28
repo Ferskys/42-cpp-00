@@ -14,8 +14,7 @@ class ShrubberyCreationForm : public AForm
 		~ShrubberyCreationForm(void);
 		ShrubberyCreationForm&	operator=(ShrubberyCreationForm const& that);
 
-		void	execute(Bureaucrat const& executor) const
-			throw(GradeTooLowException, NotSignedException,
-				std::ios_base::failure
-			);
+		void	execute(Bureaucrat const& executor) const;
 };
+
+std::ostream&	operator<<(std::ostream& os, ShrubberyCreationForm const& form);

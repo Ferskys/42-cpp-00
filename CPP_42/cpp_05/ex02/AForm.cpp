@@ -9,7 +9,7 @@ AForm::AForm() : name("JustAForm"), isSigned(false), signGrade(150), execGrade(1
     const_cast<int&>(execGrade) = rand() % 151 + 1;
 }
 
-AForm::AForm(const std::string& name, int signGrade, int execGrade) throw(GradeTooHighException, GradeTooLowException)
+AForm::AForm(const std::string& name, int signGrade, int execGrade)
     : name(name), isSigned(false), signGrade(signGrade), execGrade(execGrade) {
     if (signGrade < 1 || execGrade < 1) {
         throw GradeTooHighException();
@@ -55,7 +55,7 @@ bool AForm::getIsSigned() const {
 }
 
 // Signing the AForm
-void AForm::beSigned(const Bureaucrat& bureaucrat) throw(GradeTooLowException) {
+void AForm::beSigned(const Bureaucrat& bureaucrat){
     if (bureaucrat.getGrade() > signGrade) {
         throw GradeTooLowException();
     }

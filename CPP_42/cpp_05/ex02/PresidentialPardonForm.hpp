@@ -14,8 +14,7 @@ class PresidentialPardonForm : public AForm
 		~PresidentialPardonForm(void);
 		PresidentialPardonForm&	operator=(PresidentialPardonForm const& that);
 
-		void	execute(Bureaucrat const& executor) const
-			throw(GradeTooLowException, NotSignedException,
-				std::ios_base::failure
-			);
+		void	execute(Bureaucrat const& executor) const;
 };
+
+std::ostream&	operator<<(std::ostream& os, PresidentialPardonForm const& form);

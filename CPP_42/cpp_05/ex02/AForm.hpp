@@ -15,17 +15,17 @@ private:
 public:
     // Orthodox Canonical AForm
     AForm();
+    AForm(const std::string& name, int signGrade, int execGrade);
     AForm(const AForm& other);
     AForm& operator=(const AForm& other);
     virtual ~AForm();
-    AForm(const std::string& name, int signGrade, int execGrade) throw(GradeTooHighException, GradeTooLowException);
 
     const std::string& getName() const;
     bool getIsSigned() const;
     int getSignGrade() const;
     int getExecGrade() const;
-    void beSigned(const Bureaucrat& bureaucrat) throw(GradeTooLowException);
-    virtual void execute(const Bureaucrat& executor) const throw(GradeTooLowException, NotSignedException, std::ios_base::failure) = 0;
+    void beSigned(const Bureaucrat& bureaucrat);
+    virtual void execute(const Bureaucrat& executor) const = 0;
 
     class GradeTooHighException : public std::exception {
     public:

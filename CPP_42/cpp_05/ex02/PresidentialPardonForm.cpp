@@ -1,7 +1,6 @@
 #include "PresidentialPardonForm.hpp"
 #include <iostream>
 
-/* TRUCTORS ================================================================= */
 PresidentialPardonForm::PresidentialPardonForm(void) : AForm("PresidentialPardonForm", 25, 5), _target("NoTarget") {};
 
 PresidentialPardonForm::PresidentialPardonForm(std::string const target) : AForm("PresidentialPardonForm", 25, 5), _target(target) {};
@@ -12,7 +11,6 @@ PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const& tha
 
 PresidentialPardonForm::~PresidentialPardonForm(void) {};
 
-/* OPERATORS ================================================================ */
 PresidentialPardonForm& PresidentialPardonForm::operator=(PresidentialPardonForm const& that) {
 	if (this != &that) {
 		AForm::operator=(that);
@@ -21,12 +19,16 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(PresidentialPardonForm
 	return (*this);
 }
 
-/* METHODS ================================================================== */
-void PresidentialPardonForm::execute(Bureaucrat const& executor) const throw(GradeTooLowException, NotSignedException, std::ios_base::failure) {
+void PresidentialPardonForm::execute(Bureaucrat const& executor) const {
 	if (!getIsSigned()) { // Corrected here
 		throw NotSignedException();
 	} else if (executor.getGrade() > getExecGrade()) {
 		throw GradeTooLowException();
 	}
 	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+}
+
+std::ostream& operator<<(std::ostream& os, PresidentialPardonForm const& form) {
+	os << form.getName() << " (signed: " << form.getIsSigned() << ", sign grade: " << form.getSignGrade() << ", exec grade: " << form.getExecGrade() << ")";
+	return (os);
 }

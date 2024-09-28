@@ -16,8 +16,7 @@ class RobotomyRequestForm : public AForm
 		~RobotomyRequestForm(void);
 		RobotomyRequestForm&	operator=(RobotomyRequestForm const& that);
 
-		void	execute(Bureaucrat const& executor) const
-			throw(GradeTooLowException, NotSignedException,
-				std::ios_base::failure
-			);
+		void	execute(Bureaucrat const& executor) const;
 };
+
+std::ostream&	operator<<(std::ostream& os, RobotomyRequestForm const& form);
