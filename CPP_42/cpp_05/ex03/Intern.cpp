@@ -1,64 +1,60 @@
 #include "Intern.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "ShrubberyCreationForm.hpp"
 
-// TRUCTOR ====================================================================
-
-Intern::Intern(void) {};
-
-Intern::Intern(Intern const& that)
+struct FormCreationMapping
 {
-	*this = that;
+    std::string formName;
+    AForm *(Intern::*createFormPtr)(const std::string &target);
+};
+
+Intern::Intern() {}
+
+Intern::Intern(const Intern &other)
+{
+    (void)other;
 }
 
-Intern::~Intern(void) {};
-
-// OPERATOR ===================================================================
-
-Intern& Intern::operator=(Intern const& that)
+Intern &Intern::operator=(const Intern &other)
 {
-	// ...
-	(void)that;
-	return (*this);
+    (void)other;
+    return *this;
 }
 
+Intern::~Intern() {}
 
-// METHOD =====================================================================
-
-// de acordo com o pdf isso aqui é ilegivel pq tem if else
-// if (formName == "presidential pardon") {
-// 	return (new PresidentialPardonForm(target));
-// } else if (formName == "robotomy request") {
-// 	return (new RobotomyRequestForm(target));
-// } else if (formName == "shrubbery creation") {
-// 	return (new ShrubberyCreationForm(target));
-// } 
-// std::cout << formName << " isn't valid!" << std::endl;
-// return (NULL);
-
-
-AForm* Intern::makeForm(std::string const& formName,
-	std::string const& target
-) const
+AForm *Intern::createFormShrubbery(const std::string &target)
 {
-	std::string const formNames[3] = { "presidential pardon",
-		"robotomy request", "shrubbery creation"
-	};
+    return new ShrubberyCreationForm(target);
+}
 
-	for (int i = 0; i < 3; i++) {
-		if (formName == formNames[i]) {
-			std::cout << "Intern creates " << formName << std::endl;
-			switch (i) {
-				case 0:
-					return (new PresidentialPardonForm(target));
-				case 1:
-					return (new RobotomyRequestForm(target));
-				case 2:
-					return (new ShrubberyCreationForm(target));
-			}
-		}
-	}
-	std::cout << formName << " is an invalid form!" << std::endl;
-	return (NULL);
+AForm *Intern::createFormRobotomy(const std::string &target)
+{
+    return new RobotomyRequestForm(target);
+}
+
+AForm *Intern::createFormPardon(const std::string &target)
+{
+    return new PresidentialPardonForm(target);
+}
+
+AForm *Intern::makeForm(const std::string &formName, const std::string &target)
+{
+    FormCreationMapping formMappings[] = {
+        {"shrubbery creation", &Intern::createFormShrubbery},
+        {"robotomy request", &Intern::createFormRobotomy},
+        {"presidential pardon", &Intern::createFormPardon}};
+
+    const int formCount = sizeof(formMappings) / sizeof(formMappings[0]);
+
+    for (int i = 0; i < formCount; ++i)
+    {
+        if (formName == formMappings[i].formName)
+        {
+            AForm *form = (this->*formMappings[i].createFormPtr)(target); // Call the corresponding member function.
+            std::cout << "Intern creates " << formName << std::endl;
+            return form;
+        }
+    }
+
+    std::cout << "Error: Form " << formName << " creation failed." << std::endl;
+    return NULL;
 }

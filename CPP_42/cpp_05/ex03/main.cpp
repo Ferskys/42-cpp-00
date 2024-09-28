@@ -16,7 +16,7 @@ namespace tests
 	{
 		Intern someone;
 		AForm *form = someone.makeForm("shrubbery creation", "apartament");
-		AForm *form2 = someone.makeForm("robotomy request", "Alex Murphy");
+		AForm *form2 = someone.makeForm("robotomy request", "Bender");
 		AForm *form3 = someone.makeForm("presidential pardon", "Marvin");
 		Bureaucrat boss("Boss", 1);
 

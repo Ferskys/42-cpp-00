@@ -3,13 +3,10 @@
 #include <ctime>
 #include <iostream>
 
-/* TRUCTORS ================================================================= */
-RobotomyRequestForm::RobotomyRequestForm(void) : AForm("RobotomyRequestForm", 72, 45), _target("NoTarget") {};
 RobotomyRequestForm::RobotomyRequestForm(std::string const target) : AForm("RobotomyRequestForm", 72, 45), _target(target) {};
 RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const& that) : AForm("RobotomyRequestForm", 72, 45), _target("NoTarget") { *this = that; }
 RobotomyRequestForm::~RobotomyRequestForm(void) {};
 
-/* OPERATORS ================================================================ */
 RobotomyRequestForm& RobotomyRequestForm::operator=(RobotomyRequestForm const& that) {
     if (this != &that) {
         AForm::operator=(that);
@@ -18,8 +15,7 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(RobotomyRequestForm const& t
     return (*this);
 }
 
-/* METHODS ================================================================== */
-void RobotomyRequestForm::execute(Bureaucrat const& executor) const throw(GradeTooLowException, NotSignedException, std::ios_base::failure) {
+void RobotomyRequestForm::execute(Bureaucrat const& executor) const {
     if (!getIsSigned()) { // Corrected here
         throw NotSignedException();
     } else if (executor.getGrade() > getExecGrade()) {
@@ -32,4 +28,9 @@ void RobotomyRequestForm::execute(Bureaucrat const& executor) const throw(GradeT
     } else {
         std::cout << _target << " hasn't been robotomized!" << std::endl;
     }
+}
+
+std::ostream& operator<<(std::ostream& os, RobotomyRequestForm const& form) {
+    os << form.getName() << " (signed: " << form.getIsSigned() << ", sign grade: " << form.getSignGrade() << ", exec grade: " << form.getExecGrade() << ")";
+    return (os);
 }

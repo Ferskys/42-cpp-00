@@ -15,9 +15,6 @@ _- -   | | _- _   _- -   | | _- _   _- -   | | _- _\n\
 
 void drawTree(std::string const& fileName) throw(std::ios_base::failure);
 
-/* TRUCTORS ================================================================= */
-ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("ShrubberyCreationForm", 145, 137), _target("NoTarget") {};
-
 ShrubberyCreationForm::ShrubberyCreationForm(std::string const target) : AForm("ShrubberyCreationForm", 145, 137), _target(target) {};
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const& that) : AForm("ShrubberyCreationForm", 145, 137), _target("NoTarget") {
@@ -26,7 +23,6 @@ ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const& that) 
 
 ShrubberyCreationForm::~ShrubberyCreationForm(void) {};
 
-/* OPERATORS ================================================================ */
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(ShrubberyCreationForm const& that) {
     if (this != &that) {
         AForm::operator=(that);
@@ -35,12 +31,11 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(ShrubberyCreationForm co
     return (*this);
 }
 
-/* METHODS ================================================================== */
-void ShrubberyCreationForm::execute(Bureaucrat const& executor) const throw(GradeTooLowException, NotSignedException, std::ios_base::failure) {
+void ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
     if (!getIsSigned()) { // Corrected here
-        throw NotSignedException();
+        throw AForm::NotSignedException();
     } else if (executor.getGrade() > getExecGrade()) {
-        throw GradeTooLowException();
+        throw AForm::GradeTooLowException();
     }
     drawTree(_target + "_shrubbery");
 }
@@ -58,4 +53,9 @@ void drawTree(std::string const& fileName) throw(std::ios_base::failure) {
     if (out.fail()) {
         throw std::ios_base::failure("Error closing file");
     }
+}
+
+std::ostream& operator<<(std::ostream& os, ShrubberyCreationForm const& form) {
+    os << "ShrubberyCreationForm " << form.getName() << " (signed: " << form.getIsSigned() << ", sign grade: " << form.getSignGrade() << ", exec grade: " << form.getExecGrade() << ")";
+    return (os);
 }

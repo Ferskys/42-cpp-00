@@ -10,14 +10,12 @@ class RobotomyRequestForm : public AForm
 		const std::string	_target;
 
 	public:
-		RobotomyRequestForm(void);
 		RobotomyRequestForm(std::string const target);
 		RobotomyRequestForm(RobotomyRequestForm const& that);
 		~RobotomyRequestForm(void);
 		RobotomyRequestForm&	operator=(RobotomyRequestForm const& that);
 
-		void	execute(Bureaucrat const& executor) const
-			throw(GradeTooLowException, NotSignedException,
-				std::ios_base::failure
-			);
+		void	execute(Bureaucrat const& executor) const;
 };
+
+std::ostream&	operator<<(std::ostream& os, RobotomyRequestForm const& form);
