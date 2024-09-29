@@ -1,20 +1,42 @@
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+NAME        = ex02
 
-NAME = mutantstack
+CC          = c++
+FLAGS       = -Wall -Wextra -Werror -std=c++98
+RM          = rm -rf
 
-SRCS = main.cpp
-OBJS = $(SRCS:.cpp=.o)
+OBDIR       = .oFiles
+
+FILES       = main
+
+SRC         = $(FILES:=.cpp)
+OBJ         = $(addprefix $(OBDIR)/, $(FILES:=.o))
+INC		 	= $(addprefix -I, $(IDIR))
+
+GREEN       = \033[92;5;118m
+YELLOW      = \033[93;5;226m
+GRAY        = \033[33;2;37m
+RESET       = \033[0m
+CURSIVE     = \033[3m
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
+$(NAME): $(OBJ)
+	@echo "$(CURSIVE)$(GRAY)    - Compiling $(NAME)... $(RESET)"
+	@$(CC) $(OBJ) -o $(NAME)
+	@echo "$(GREEN)- Executable ready.$(RESET)"
+
+$(OBDIR)/%.o: %.cpp
+	@mkdir -p $(OBDIR)
+	@$(CC) $(FLAGS) $(INC) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	@$(RM) -rf $(OBDIR)
+	@echo "$(YELLOW)    - Object files removed.$(RESET)"
 
 fclean: clean
-	rm -f $(NAME)
+	@$(RM) $(NAME)
+	@echo "$(YELLOW)    - Executable removed.$(RESET)"
 
 re: fclean all
+
+.PHONY: all clean fclean re
