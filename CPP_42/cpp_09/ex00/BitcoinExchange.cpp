@@ -8,7 +8,7 @@ BitcoinExchange::BitcoinExchange() {}
 BitcoinExchange::~BitcoinExchange() {}
 
 void BitcoinExchange::loadDatabase(const std::string &filename) {
-    std::ifstream file(filename);
+    std::ifstream file(filename.c_str());
     std::string line, date;
     float rate;
     
@@ -24,7 +24,7 @@ void BitcoinExchange::loadDatabase(const std::string &filename) {
 }
 
 float BitcoinExchange::getRateForDate(const std::string &date) const {
-    auto it = exchangeRates.lower_bound(date);
+    std::map<std::string, float>::const_iterator it = exchangeRates.lower_bound(date);
     if (it != exchangeRates.end()) return it->second;
     return 0.0;
 }
