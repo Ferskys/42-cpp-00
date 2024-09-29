@@ -51,6 +51,6 @@ void ScalarConverter::convertToDouble(double value) {
     } else if (std::isinf(value)) {
         std::cout << "double: " << (value > 0 ? "+inf" : "-inf") << std::endl;
     } else {
-        std::cout << "double: " << value << std::endl;
+        std::cout << "double: " << static_cast<double>(value) << std::endl;
     }
 }
