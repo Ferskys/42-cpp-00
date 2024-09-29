@@ -20,9 +20,9 @@ CURSIVE     = \033[3m
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@printf "$(CURSIVE)$(GRAY)    - Compiling $(NAME)... $(RESET)\n"
+	@echo "$(CURSIVE)$(GRAY)    - Compiling $(NAME)... $(RESET)\n"
 	@$(CC) $(OBJ) -o $(NAME)
-	@printf "$(GREEN)- Executable ready.\n$(RESET)"
+	@echo "$(GREEN)- Executable ready.\n$(RESET)"
 
 $(OBDIR)/%.o: %.cpp
 	@mkdir -p $(OBDIR)
@@ -30,11 +30,11 @@ $(OBDIR)/%.o: %.cpp
 
 clean:
 	@$(RM) -rf $(OBDIR)
-	@printf "$(YELLOW)    - Object files removed.$(RESET)\n"
+	@echo "$(YELLOW)    - Object files removed.$(RESET)\n"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@printf "$(YELLOW)    - Executable removed.$(RESET)\n"
+	@echo "$(YELLOW)    - Executable removed.$(RESET)\n"
 
 re: fclean all
 

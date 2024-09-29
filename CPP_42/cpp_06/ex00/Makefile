@@ -22,7 +22,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@echo "$(CURSIVE)$(GRAY)    - Compiling $(NAME)... $(RESET)"
 	@$(CC) $(OBJ) -o $(NAME)
-	@echo "$(GREEN)- Executable ready.\n$(RESET)"
+	@echo "$(GREEN)- Executable ready.$(RESET)"
 
 $(OBDIR)/%.o: %.cpp
 	@mkdir -p $(OBDIR)
