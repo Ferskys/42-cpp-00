@@ -1,8 +1,8 @@
 #pragma once
 
-template <typename T>
-void iter(T* array, int length, void (*f)(T&)) {
-    for (int i = 0; i < length; ++i) {
-        f(array[i]);
+template <typename T, typename F>
+void iter(T* array, size_t length, F func) {
+    for (size_t i = 0; i < length; ++i) {
+        func(array[i]);
     }
 }
