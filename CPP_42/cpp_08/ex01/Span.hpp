@@ -5,7 +5,12 @@
 
 class Span {
 public:
+    Span(); // Construtor padrão
     Span(unsigned int n);
+    Span(const Span& other); // Construtor de cópia
+    Span& operator=(const Span& other); // Operador de atribuição de cópia
+    ~Span(); // Destrutor
+
     void addNumber(int num);
     int shortestSpan() const;
     int longestSpan() const;
