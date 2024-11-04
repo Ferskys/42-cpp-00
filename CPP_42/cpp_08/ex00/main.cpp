@@ -1,5 +1,3 @@
-#include <iostream>
-#include <vector>
 #include "easyfind.hpp"
 
 int main() {
@@ -9,7 +7,7 @@ int main() {
 
     try {
         std::cout << "Found: " << *easyfind(vec, 3) << std::endl;
-        std::cout << "Found: " << *easyfind(vec, 6) << std::endl; // This will throw an exception
+        std::cout << "Found: " << *easyfind(vec, 6) << std::endl;
     } catch (std::exception& e) {
         std::cerr << "Value not found!" << std::endl;
     }

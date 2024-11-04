@@ -3,16 +3,12 @@
 #include <limits>
 #include <algorithm>
 
-// Construtor padrão
 Span::Span() : _maxSize(0) {}
 
-// Construtor com parâmetro
 Span::Span(unsigned int n) : _maxSize(n) {}
 
-// Construtor de cópia
 Span::Span(const Span& other) : _numbers(other._numbers), _maxSize(other._maxSize) {}
 
-// Operador de atribuição de cópia
 Span& Span::operator=(const Span& other) {
     if (this != &other) {
         _numbers = other._numbers;
@@ -21,10 +17,8 @@ Span& Span::operator=(const Span& other) {
     return *this;
 }
 
-// Destrutor
 Span::~Span() {}
 
-// Função para adicionar um número
 void Span::addNumber(int num) {
     if (_numbers.size() >= _maxSize) {
         throw std::out_of_range("Span is full");
