@@ -1,6 +1,7 @@
 #pragma once
 #include <stack>
 #include <string>
+#include <cstdlib> 
 
 class RPN {
 public:
@@ -12,4 +13,5 @@ public:
     
 private:
     std::stack<int> values;
+	void exitProgram() const;
 };

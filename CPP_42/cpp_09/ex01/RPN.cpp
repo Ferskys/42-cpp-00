@@ -14,6 +14,9 @@ RPN &RPN::operator=(const RPN &other) {
 }
 
 RPN::~RPN() {}
+void RPN::exitProgram() const {
+    std::exit(EXIT_FAILURE);
+}
 
 int RPN::evaluate(const std::string &expression) {
     std::stringstream ss(expression);
@@ -25,7 +28,7 @@ int RPN::evaluate(const std::string &expression) {
         } else {
             if (values.size() < 2) {
                 std::cerr << "Error: Invalid expression." << std::endl;
-                return 0;
+				exitProgram();
             }
             int val2 = values.top(); values.pop();
             int val1 = values.top(); values.pop();
