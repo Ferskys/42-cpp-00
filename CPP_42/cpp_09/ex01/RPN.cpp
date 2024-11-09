@@ -4,6 +4,15 @@
 
 RPN::RPN() {}
 
+RPN::RPN(const RPN &other) : values(other.values) {}
+
+RPN &RPN::operator=(const RPN &other) {
+    if (this != &other) {
+        values = other.values;
+    }
+    return *this;
+}
+
 RPN::~RPN() {}
 
 int RPN::evaluate(const std::string &expression) {
