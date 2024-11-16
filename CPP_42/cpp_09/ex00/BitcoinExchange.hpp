@@ -16,9 +16,7 @@ public:
 
     void loadDatabase(const std::string &filename);
     float getRateForDate(const std::string &date) const;
-    std::map<std::string, float> getExchangeRates() const {
-        return exchangeRates;  // Retorna uma cópia do mapa
-    }
+    std::map<std::string, float> getExchangeRates() const;
 
 private:
     std::map<std::string, float> exchangeRates;

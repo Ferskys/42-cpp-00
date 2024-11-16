@@ -18,6 +18,10 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other) {
     return *this;
 }
 
+std::map<std::string, float> BitcoinExchange::getExchangeRates() const {
+    return exchangeRates;
+}
+
 void BitcoinExchange::loadDatabase(const std::string &filename) {
     std::ifstream file(filename.c_str());
 
@@ -51,7 +55,7 @@ void BitcoinExchange::loadDatabaseFromFile(std::ifstream &file) {
 
 bool BitcoinExchange::processLine(const std::string &line, std::string &date, float &rate) {
     std::stringstream ss(line);
-    std::getline(ss, date, ','); // Lê a data antes do separador '|'
+    std::getline(ss, date, ','); // Lê a data antes do separador ','
     if (!(ss >> rate)) {
         std::cerr << "Erro ao processar linha: " << line << std::endl;
         return false;  // Se não conseguir ler o valor, ignora a linha
@@ -74,9 +78,9 @@ void BitcoinExchange::showExchangeRates() const {
     std::cout << "Taxas carregadas no mapa:" << std::endl;
     for (std::map<std::string, float>::const_iterator it = exchangeRates.begin(); it != exchangeRates.end(); ++it) {
         std::cout << "Data: " << it->first << " => Taxa: " << it->second << std::endl;
-        // Salvar os dados em um arquivo ou exibir na tela
-       // std::ofstream out("exchange_rates.txt", std::ios::app);
-        //out << it->first << " " << it->second << std::endl;
+        /*Salvar os dados em um arquivo ou exibir na tela
+        std::ofstream out("exchange_rates.txt", std::ios::app);
+        out << it->first << " " << it->second << std::endl;*/
     }
 }
 

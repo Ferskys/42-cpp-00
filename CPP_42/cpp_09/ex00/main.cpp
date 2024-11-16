@@ -10,17 +10,17 @@ int main(int argc, char** argv) {
     // Teste do Construtor Padrão
     std::cout << "Iniciando teste do Construtor Padrão..." << std::endl;
     BitcoinExchange btc;
-    btc.loadDatabase("data.csv");  // Carrega um arquivo de taxas de câmbio
+    btc.loadDatabase(argv[1]);
 
     // Teste do Construtor de Cópia
     std::cout << "Iniciando teste do Construtor de Cópia..." << std::endl;
-    BitcoinExchange btc_copy(btc);  // Constrói uma cópia de btc
+    BitcoinExchange btc_copy(btc);
 
     // Itera sobre todas as entradas de exchangeRates para verificar as taxas de câmbio
     std::map<std::string, float> exchangeRates = btc.getExchangeRates();
     for (std::map<std::string, float>::iterator it = exchangeRates.begin(); it != exchangeRates.end(); ++it) {
         const std::string& date = it->first;
-        float rate_original = it->second;  // Taxa no objeto original
+        float rate_original = it->second;
 
         // Obtém a taxa correspondente na cópia
         float rate_copy = btc_copy.getRateForDate(date);
@@ -62,8 +62,7 @@ int main(int argc, char** argv) {
     // Simulando a destruição dos objetos ao sair do escopo
     {
         BitcoinExchange btc_temp;
-        btc_temp.loadDatabase("data.csv");  // Carrega um arquivo de taxas de câmbio
-        // Não há necessidade de testar manualmente, mas podemos verificar se o programa termina sem vazamentos de memória
+        btc_temp.loadDatabase(argv[1]);
         std::cout << "Objetos temporários destruídos automaticamente." << std::endl;
     }
     std::cout << "Destruidor: Teste passado!" << std::endl;

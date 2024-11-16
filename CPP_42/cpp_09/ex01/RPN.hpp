@@ -2,6 +2,7 @@
 #include <stack>
 #include <string>
 #include <cstdlib> 
+#include <iostream>
 
 class RPN {
 public:
@@ -9,8 +10,9 @@ public:
 	RPN(const RPN &other);
     RPN &operator=(const RPN &other);  
     ~RPN();
+
     int evaluate(const std::string &expression);
-    
+
 private:
     std::stack<int> values;
 	void exitProgram() const;
