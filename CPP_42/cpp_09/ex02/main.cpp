@@ -1,5 +1,6 @@
 #include "PmergeMe.hpp"
 #include <iostream>
+#include <iomanip> // Para std::fixed e std::setprecision
 #include <cstdlib>
 #include <ctime>
 #include <list>
@@ -39,13 +40,13 @@ int main(int argc, char** argv) {
     std::clock_t start = std::clock();
     pm.sortList(lst);
     std::clock_t end = std::clock();
-    double timeList = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1e6;
+    double timeList = static_cast<double>(end - start) / CLOCKS_PER_SEC; // Em segundos
 
     // Medir e realizar a ordenação para std::deque
     start = std::clock();
     pm.sortDeque(deq);
     end = std::clock();
-    double timeDeque = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1e6;
+    double timeDeque = static_cast<double>(end - start) / CLOCKS_PER_SEC; // Em segundos
 
     // Exibir depois da ordenação (usando iteradores para C++98)
     std::cout << "After: ";
@@ -54,8 +55,14 @@ int main(int argc, char** argv) {
     }
     std::cout << std::endl;
 
-    std::cout << "Time to process a range of " << lst.size() << " elements with std::list: " << timeList << " us" << std::endl;
-    std::cout << "Time to process a range of " << deq.size() << " elements with std::deque: " << timeDeque << " us" << std::endl;
+    // Exibir os tempos em segundos, com precisão de 6 casas decimais
+    std::cout << "Time to process a range of " << lst.size() 
+              << " elements with std::list: " 
+              << std::fixed << std::setprecision(6) << timeList << " s" << std::endl;
+
+    std::cout << "Time to process a range of " << deq.size() 
+              << " elements with std::deque: " 
+              << std::fixed << std::setprecision(6) << timeDeque << " s" << std::endl;
 
     return 0;
 }
